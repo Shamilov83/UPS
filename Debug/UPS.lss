@@ -1,0 +1,1738 @@
+
+UPS.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000962  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000008c0  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000033  00800100  00800100  00000954  2**0
+                  ALLOC
+  3 .eeprom       0000000e  00810000  00810000  00000954  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .comment      00000030  00000000  00000000  00000962  2**0
+                  CONTENTS, READONLY
+  5 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000994  2**2
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000100  00000000  00000000  000009d8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   0000129c  00000000  00000000  00000ad8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000a83  00000000  00000000  00001d74  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000c6d  00000000  00000000  000027f7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000170  00000000  00000000  00003464  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000641  00000000  00000000  000035d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000004a6  00000000  00000000  00003c15  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000080  00000000  00000000  000040bb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 48 00 	jmp	0x90	; 0x90 <__vector_13>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__vector_16>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 b6 00 	jmp	0x16c	; 0x16c <__vector_18>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a3 33       	cpi	r26, 0x33	; 51
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 db 00 	call	0x1b6	; 0x1b6 <main>
+  88:	0c 94 5e 04 	jmp	0x8bc	; 0x8bc <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <__vector_13>:
+volatile uint16_t counter_test =0;
+/**********************************************************
+ * ОБРАБОТКА ПРЕРЫВАНИЙ
+ */
+ISR(TIMER1_OVF_vect)			//инкремент счетчика периода запуска теста T1. период вызова прерывание при частоте 16Мгц 238мс
+{
+  90:	1f 92       	push	r1
+  92:	0f 92       	push	r0
+  94:	0f b6       	in	r0, 0x3f	; 63
+  96:	0f 92       	push	r0
+  98:	11 24       	eor	r1, r1
+  9a:	8f 93       	push	r24
+  9c:	9f 93       	push	r25
+	TCNT1 = ust_tc1;			//предустановка таймера-счетчика1,  переполнение каждые 8с		
+  9e:	8c ed       	ldi	r24, 0xDC	; 220
+  a0:	9b e0       	ldi	r25, 0x0B	; 11
+  a2:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
+  a6:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
+	//counter_test++;				//тестовый счетчик
+}
+  aa:	9f 91       	pop	r25
+  ac:	8f 91       	pop	r24
+  ae:	0f 90       	pop	r0
+  b0:	0f be       	out	0x3f, r0	; 63
+  b2:	0f 90       	pop	r0
+  b4:	1f 90       	pop	r1
+  b6:	18 95       	reti
+
+000000b8 <__vector_16>:
+ *   Переполнение по таймеру
+ * 	 каждую 10 миллисекунду
+ *********************************************************/
+
+ISR(TIMER0_OVF_vect)			
+{
+  b8:	1f 92       	push	r1
+  ba:	0f 92       	push	r0
+  bc:	0f b6       	in	r0, 0x3f	; 63
+  be:	0f 92       	push	r0
+  c0:	11 24       	eor	r1, r1
+  c2:	8f 93       	push	r24
+  c4:	9f 93       	push	r25
+  c6:	af 93       	push	r26
+  c8:	bf 93       	push	r27
+	TCNT0 = ust_tc0;			//предустановка таймера-счетчика0,  переполнение каждые 1мс
+  ca:	80 ef       	ldi	r24, 0xF0	; 240
+  cc:	86 bd       	out	0x26, r24	; 38
+	timer1ms++;					//увеличение внутренних счетчиков
+  ce:	80 91 16 01 	lds	r24, 0x0116	; 0x800116 <timer1ms>
+  d2:	8f 5f       	subi	r24, 0xFF	; 255
+  d4:	80 93 16 01 	sts	0x0116, r24	; 0x800116 <timer1ms>
+	count_time_zar++;			//счетчик времени заряда
+  d8:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <count_time_zar>
+  dc:	90 91 04 01 	lds	r25, 0x0104	; 0x800104 <count_time_zar+0x1>
+  e0:	a0 91 05 01 	lds	r26, 0x0105	; 0x800105 <count_time_zar+0x2>
+  e4:	b0 91 06 01 	lds	r27, 0x0106	; 0x800106 <count_time_zar+0x3>
+  e8:	01 96       	adiw	r24, 0x01	; 1
+  ea:	a1 1d       	adc	r26, r1
+  ec:	b1 1d       	adc	r27, r1
+  ee:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <count_time_zar>
+  f2:	90 93 04 01 	sts	0x0104, r25	; 0x800104 <count_time_zar+0x1>
+  f6:	a0 93 05 01 	sts	0x0105, r26	; 0x800105 <count_time_zar+0x2>
+  fa:	b0 93 06 01 	sts	0x0106, r27	; 0x800106 <count_time_zar+0x3>
+	count_period_test++;		//инкремент счетчика периода запуска теста T1		
+  fe:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <count_period_test>
+ 102:	90 91 0e 01 	lds	r25, 0x010E	; 0x80010e <count_period_test+0x1>
+ 106:	a0 91 0f 01 	lds	r26, 0x010F	; 0x80010f <count_period_test+0x2>
+ 10a:	b0 91 10 01 	lds	r27, 0x0110	; 0x800110 <count_period_test+0x3>
+ 10e:	01 96       	adiw	r24, 0x01	; 1
+ 110:	a1 1d       	adc	r26, r1
+ 112:	b1 1d       	adc	r27, r1
+ 114:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <count_period_test>
+ 118:	90 93 0e 01 	sts	0x010E, r25	; 0x80010e <count_period_test+0x1>
+ 11c:	a0 93 0f 01 	sts	0x010F, r26	; 0x80010f <count_period_test+0x2>
+ 120:	b0 93 10 01 	sts	0x0110, r27	; 0x800110 <count_period_test+0x3>
+	count_time_test_T2++;		//счетчик времени опроса напряжения батареи
+ 124:	80 91 09 01 	lds	r24, 0x0109	; 0x800109 <count_time_test_T2>
+ 128:	90 91 0a 01 	lds	r25, 0x010A	; 0x80010a <count_time_test_T2+0x1>
+ 12c:	01 96       	adiw	r24, 0x01	; 1
+ 12e:	90 93 0a 01 	sts	0x010A, r25	; 0x80010a <count_time_test_T2+0x1>
+ 132:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <count_time_test_T2>
+	count_time_test++;			//инкремент счетчика длительности теста
+ 136:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <count_time_test>
+ 13a:	90 91 0c 01 	lds	r25, 0x010C	; 0x80010c <count_time_test+0x1>
+ 13e:	01 96       	adiw	r24, 0x01	; 1
+ 140:	90 93 0c 01 	sts	0x010C, r25	; 0x80010c <count_time_test+0x1>
+ 144:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <count_time_test>
+	counter_test++;				//тестовый счетчик
+ 148:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 14c:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 150:	01 96       	adiw	r24, 0x01	; 1
+ 152:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 156:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+}
+ 15a:	bf 91       	pop	r27
+ 15c:	af 91       	pop	r26
+ 15e:	9f 91       	pop	r25
+ 160:	8f 91       	pop	r24
+ 162:	0f 90       	pop	r0
+ 164:	0f be       	out	0x3f, r0	; 63
+ 166:	0f 90       	pop	r0
+ 168:	1f 90       	pop	r1
+ 16a:	18 95       	reti
+
+0000016c <__vector_18>:
+
+/**********************************************************
+ *  USART, Приём байта завершён
+ *********************************************************/ 
+ISR(USART_RX_vect)
+{
+ 16c:	1f 92       	push	r1
+ 16e:	0f 92       	push	r0
+ 170:	0f b6       	in	r0, 0x3f	; 63
+ 172:	0f 92       	push	r0
+ 174:	11 24       	eor	r1, r1
+ 176:	8f 93       	push	r24
+ 178:	9f 93       	push	r25
+ 17a:	ef 93       	push	r30
+ 17c:	ff 93       	push	r31
+	unsigned char temp;
+	timer1ms  = 0;						//обнулить счетчик между байтами
+ 17e:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <timer1ms>
+	temp = UDR0;						//напрямую в массив из UDR писать нельзя
+ 182:	90 91 c6 00 	lds	r25, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+	usart_buf[received_bytes] = temp;	//поместить в буфер приёма
+ 186:	80 91 17 01 	lds	r24, 0x0117	; 0x800117 <received_bytes>
+ 18a:	e8 2f       	mov	r30, r24
+ 18c:	f0 e0       	ldi	r31, 0x00	; 0
+ 18e:	e8 5e       	subi	r30, 0xE8	; 232
+ 190:	fe 4f       	sbci	r31, 0xFE	; 254
+ 192:	90 83       	st	Z, r25
+	received_bytes++;					//в следующий раз разместить в след.ячейку
+ 194:	8f 5f       	subi	r24, 0xFF	; 255
+	if(received_bytes > SIZE_BUF) 		//если буфер переполнен
+ 196:	85 31       	cpi	r24, 0x15	; 21
+ 198:	18 f4       	brcc	.+6      	; 0x1a0 <__vector_18+0x34>
+{
+	unsigned char temp;
+	timer1ms  = 0;						//обнулить счетчик между байтами
+	temp = UDR0;						//напрямую в массив из UDR писать нельзя
+	usart_buf[received_bytes] = temp;	//поместить в буфер приёма
+	received_bytes++;					//в следующий раз разместить в след.ячейку
+ 19a:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <received_bytes>
+ 19e:	02 c0       	rjmp	.+4      	; 0x1a4 <__vector_18+0x38>
+	if(received_bytes > SIZE_BUF) 		//если буфер переполнен
+	{
+		received_bytes = 0;				//то сбросить индекс кол-ва байт в буфере
+ 1a0:	10 92 17 01 	sts	0x0117, r1	; 0x800117 <received_bytes>
+	}
+	
+}
+ 1a4:	ff 91       	pop	r31
+ 1a6:	ef 91       	pop	r30
+ 1a8:	9f 91       	pop	r25
+ 1aa:	8f 91       	pop	r24
+ 1ac:	0f 90       	pop	r0
+ 1ae:	0f be       	out	0x3f, r0	; 63
+ 1b0:	0f 90       	pop	r0
+ 1b2:	1f 90       	pop	r1
+ 1b4:	18 95       	reti
+
+000001b6 <main>:
+
+	
+int main(void)
+{
+	flagi = 0;
+ 1b6:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <flagi>
+	flag_d = 0;
+ 1ba:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <flag_d>
+	flag_z = 0;
+ 1be:	10 92 14 01 	sts	0x0114, r1	; 0x800114 <flag_z>
+	
+	
+	received_bytes = 0;						// количество принятых байт в массив
+ 1c2:	10 92 17 01 	sts	0x0117, r1	; 0x800117 <received_bytes>
+	timer1ms=0;								// считает время между байтами
+ 1c6:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <timer1ms>
+	init_device();							// инициализация контроллера
+ 1ca:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z11init_devicev>
+			}
+			//если выше, то 
+			//РАБОТА ОТ СЕТИ
+			else
+			{	
+				Tp = 0xFFFFFFFF;
+ 1ce:	cf ef       	ldi	r28, 0xFF	; 255
+ 1d0:	df ef       	ldi	r29, 0xFF	; 255
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1d2:	8f e3       	ldi	r24, 0x3F	; 63
+ 1d4:	9c e9       	ldi	r25, 0x9C	; 156
+ 1d6:	01 97       	sbiw	r24, 0x01	; 1
+ 1d8:	f1 f7       	brne	.-4      	; 0x1d6 <main+0x20>
+ 1da:	00 c0       	rjmp	.+0      	; 0x1dc <main+0x26>
+ 1dc:	00 00       	nop
+	{
+		
+	_delay_ms(10);
+	
+		//проверить есть ли данные для приема
+		if (received_bytes && (timer1ms >= TIME_BETWEEN_BYTE))
+ 1de:	80 91 17 01 	lds	r24, 0x0117	; 0x800117 <received_bytes>
+ 1e2:	88 23       	and	r24, r24
+ 1e4:	31 f0       	breq	.+12     	; 0x1f2 <main+0x3c>
+ 1e6:	80 91 16 01 	lds	r24, 0x0116	; 0x800116 <timer1ms>
+ 1ea:	82 30       	cpi	r24, 0x02	; 2
+ 1ec:	10 f0       	brcs	.+4      	; 0x1f2 <main+0x3c>
+	
+		{
+			parsing_package();		//обработка посылки						
+ 1ee:	0e 94 2c 03 	call	0x658	; 0x658 <_Z15parsing_packagev>
+		count_time_zar=0;
+	}
+	#endif
+
+	
+		asm("wdr");		//обнуление сторожевого таймера		 
+ 1f2:	a8 95       	wdr
+			//если входное напряжение ниже установки, то 
+			//РАБОТА ОТ АКБ 
+			if(read_adc(Uin)<UST_Uin)
+ 1f4:	83 e0       	ldi	r24, 0x03	; 3
+ 1f6:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 1fa:	88 38       	cpi	r24, 0x88	; 136
+ 1fc:	91 40       	sbci	r25, 0x01	; 1
+ 1fe:	58 f5       	brcc	.+86     	; 0x256 <main+0xa0>
+			//if(0)						
+			{				
+
+							OUT_BAT_ON();				//подключить преобразователь к аккумулятору		
+ 200:	5d 9a       	sbi	0x0b, 5	; 11
+							NAGR_ON();					// включить нагрузку		
+ 202:	5f 9a       	sbi	0x0b, 7	; 11
+							SetBit(flagi,5);			//установить флаг включения нагрузки				
+ 204:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 208:	80 62       	ori	r24, 0x20	; 32
+ 20a:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+							PREOBR_OFF();				// отключить сеть				
+ 20e:	5b 98       	cbi	0x0b, 3	; 11
+							ZAR_OFF();					// отключить зарядку  				
+ 210:	5c 98       	cbi	0x0b, 4	; 11
+							SetBit(flagi,7);			//установить флаг работы от аккумулятора (бит 7<<1)				
+ 212:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 216:	80 68       	ori	r24, 0x80	; 128
+ 218:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+							Flag_test = 0;				//сбросить флаг проведения теста на случай если отключение сети произойдет в момент теста							
+ 21c:	10 92 15 01 	sts	0x0115, r1	; 0x800115 <Flag_test>
+							LED_AKK_ON();				// индикация РАБОТЫ ОТ БАТАРЕИ				
+ 220:	28 9a       	sbi	0x05, 0	; 5
+							LED_PWR_OFF();				//ОТКЛЮЧИТЬ ИНДИКАТОР РАБОТЫ ОТ СЕТИ
+ 222:	2a 98       	cbi	0x05, 2	; 5
+							RAZR_OFF();					//прекратить тест, если запущен
+ 224:	5e 98       	cbi	0x0b, 6	; 11
+							LED_RAZR_OFF();				//отключить индикатор теста					
+ 226:	2d 98       	cbi	0x05, 5	; 5
+							LED_ZAR_OFF();				//отключить индикацию заряда				
+ 228:	2c 98       	cbi	0x05, 4	; 5
+							count_period_test = 0;		//обнулить счетчик запуска теста.
+ 22a:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <count_period_test>
+ 22e:	10 92 0e 01 	sts	0x010E, r1	; 0x80010e <count_period_test+0x1>
+ 232:	10 92 0f 01 	sts	0x010F, r1	; 0x80010f <count_period_test+0x2>
+ 236:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <count_period_test+0x3>
+								
+									if(count_time_test_T2>=Ust_count2)		
+ 23a:	80 91 09 01 	lds	r24, 0x0109	; 0x800109 <count_time_test_T2>
+ 23e:	90 91 0a 01 	lds	r25, 0x010A	; 0x80010a <count_time_test_T2+0x1>
+ 242:	80 31       	cpi	r24, 0x10	; 16
+ 244:	97 42       	sbci	r25, 0x27	; 39
+ 246:	18 f1       	brcs	.+70     	; 0x28e <main+0xd8>
+									{  																		
+										//вычислить и записать время работы
+										time_work();
+ 248:	0e 94 bb 03 	call	0x776	; 0x776 <_Z9time_workv>
+										//обнулить счетчик периода замера напряжения 
+										// аккумулятора при автономном режиме
+										count_time_test_T2 = 0;																		
+ 24c:	10 92 0a 01 	sts	0x010A, r1	; 0x80010a <count_time_test_T2+0x1>
+ 250:	10 92 09 01 	sts	0x0109, r1	; 0x800109 <count_time_test_T2>
+ 254:	1c c0       	rjmp	.+56     	; 0x28e <main+0xd8>
+			}
+			//если выше, то 
+			//РАБОТА ОТ СЕТИ
+			else
+			{	
+				Tp = 0xFFFFFFFF;
+ 256:	d0 93 12 01 	sts	0x0112, r29	; 0x800112 <Tp+0x1>
+ 25a:	c0 93 11 01 	sts	0x0111, r28	; 0x800111 <Tp>
+				LED_AKK_OFF();				//отключить индикацию работы от аккумулятора
+ 25e:	28 98       	cbi	0x05, 0	; 5
+				LED_PWR_ON();				//включить индикацию работы от сети
+ 260:	2a 9a       	sbi	0x05, 2	; 5
+				PREOBR_ON();				//ПОДКЛЮЧИТЬ ПРЕОБРАЗОВАТЕЛЬ К СЕТИ
+ 262:	5b 9a       	sbi	0x0b, 3	; 11
+				NAGR_ON();					//ПОДКЛЮЧИТЬ НАГРУЗКУ
+ 264:	5f 9a       	sbi	0x0b, 7	; 11
+				SetBit(flagi,5);			//установить флаг включения нагрузки
+ 266:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 26a:	80 62       	ori	r24, 0x20	; 32
+ 26c:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+				OUT_BAT_OFF();				//ОТКЛЮЧИТЬ ПРЕОБРАЗОВАТЕЛЬ ОТ АККУМУЛЯТОРА			
+ 270:	5d 98       	cbi	0x0b, 5	; 11
+				ClrBit(flagi,7);			//при работе от сети сбросить бит 7
+ 272:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 276:	8f 77       	andi	r24, 0x7F	; 127
+ 278:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+
+
+
+						//проверить флаг проведения теста. Если тест не проводиться проверить заряд батареи и необходимость теста
+						//иначе вызвать функцию теста, которая проверит длительность теста и установит флаг пригодности аккумулятора
+						if(!Flag_test)
+ 27c:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <Flag_test>
+ 280:	81 11       	cpse	r24, r1
+ 282:	03 c0       	rjmp	.+6      	; 0x28a <main+0xd4>
+						{
+							
+							//проверить флаг запуска заряда, если запущен проверить прошло ли время заряда
+							//если не установлен, то проверить напряжение на батареии 
+							
+							zaryd();	
+ 284:	0e 94 e2 03 	call	0x7c4	; 0x7c4 <_Z5zarydv>
+ 288:	02 c0       	rjmp	.+4      	; 0x28e <main+0xd8>
+						}
+						else
+						{							
+							regim_test();			//функция теста.	
+ 28a:	0e 94 69 03 	call	0x6d2	; 0x6d2 <_Z10regim_testv>
+						
+						
+			}	
+					
+				//проверка выходного напряжения
+				if(read_adc(Uout)<UST_Uout)
+ 28e:	81 e0       	ldi	r24, 0x01	; 1
+ 290:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 294:	82 31       	cpi	r24, 0x12	; 18
+ 296:	92 40       	sbci	r25, 0x02	; 2
+ 298:	78 f4       	brcc	.+30     	; 0x2b8 <main+0x102>
+				//if(0)	
+			{
+				ClrBit(flagi,5);				//установить флаг отключения нагрузки
+ 29a:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 29e:	8f 7d       	andi	r24, 0xDF	; 223
+ 2a0:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+				//ZAR_ON();						//включить цепь заряда
+				PREOBR_ON();					//подключить преобразователь
+ 2a4:	5b 9a       	sbi	0x0b, 3	; 11
+				LED_ERR_ON();					//включить индикацию "АВАРИЯ"
+ 2a6:	2b 9a       	sbi	0x05, 3	; 5
+				SetBit(flagi,4);				//установить флаг "АВАРИЯ"
+ 2a8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 2ac:	80 61       	ori	r24, 0x10	; 16
+ 2ae:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+				RAZR_OFF();						//прекратить тест
+ 2b2:	5e 98       	cbi	0x0b, 6	; 11
+				LED_RAZR_OFF();
+ 2b4:	2d 98       	cbi	0x05, 5	; 5
+ 2b6:	8d cf       	rjmp	.-230    	; 0x1d2 <main+0x1c>
+				transmit((uint8_t*)x,strlen(x));
+				#endif
+			}
+			else
+			{
+				LED_ERR_OFF();					//выключить индикатор "АВАРИЯ"
+ 2b8:	2b 98       	cbi	0x05, 3	; 5
+				ClrBit(flagi,4);				//снять флаг "АВАРИЯ"	
+ 2ba:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 2be:	8f 7e       	andi	r24, 0xEF	; 239
+ 2c0:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+				NAGR_ON();
+ 2c4:	5f 9a       	sbi	0x0b, 7	; 11
+ 2c6:	85 cf       	rjmp	.-246    	; 0x1d2 <main+0x1c>
+
+000002c8 <_Z10USART_Initj>:
+ *@param unsigned int [IN] baud скорость
+ */
+void USART_Init( unsigned int baud )
+{
+
+	asm("cli");			//запретить прерывания
+ 2c8:	f8 94       	cli
+			(0<<UDRE0)|		//флаг готовности буфера
+			(0<<FE0)	|	//ошибка кадрирования в приемном буфере
+			(0<<DOR0) |		//переполнение приемного буфера
+			(0<<UPE0) |		//ошибка бита четности
+			(0<<U2X0) |		//делитель синхронной передачи
+			(0<<MPCM0);
+ 2ca:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7e00c0>
+			(0<<UDRIE0) |	//Запись этого бита в один включает прерывание на флаге UDREn. Пустое прерывание регистра данных будет сгенерировано, только если бит UDRIEn записан в единицу, глобальный флаг прерывания в SREG записан в единицу, и бит UDREn в UCSRnA установлен.
+			(1<<RXEN0) |	//Запись этого бита в один включает приемник USART.
+			(0<<TXEN0) |	//Запись этого бита в один включает передатчик USART.
+			(0<<UCSZ02) |	//Биты UCSZn2, объединенные с битом UCSZn1: 0 в UCSRnC, устанавливают количество битов данных (символ SiZe) в кадре, используемом приемником и передатчиком. установленно 8
+			(0<<RXB80) | 
+			(0<<TXB80);
+ 2ce:	20 e9       	ldi	r18, 0x90	; 144
+ 2d0:	20 93 c1 00 	sts	0x00C1, r18	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+			(0<<UPM01) |	//Эти биты включают и устанавливают тип генерации и проверки четности.
+			(0<<UPM00) | 
+			(0<<USBS0) |	//1 стоп-бит*/
+			(1<<UCSZ01) |	
+			(1<<UCSZ00) | 
+			(0<<UCPOL0);
+ 2d4:	26 e0       	ldi	r18, 0x06	; 6
+ 2d6:	20 93 c2 00 	sts	0x00C2, r18	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
+	 	//UBRR0H=0x00;//19200
+	 	//UBRR0L=0x33;
+	UBRR0H = (unsigned char)(baud>>8);
+ 2da:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+	UBRR0L = (unsigned char)baud;
+ 2de:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+	asm("sei");								//разрешить прерывания
+ 2e2:	78 94       	sei
+ 2e4:	08 95       	ret
+
+000002e6 <_Z11init_devicev>:
+/***********************************************************
+ * Инициализация устройства
+ **********************************************************/
+void init_device(void)
+{
+	asm("cli");
+ 2e6:	f8 94       	cli
+	eeprom_read_block(&cfg,&ee_cfg,sizeof(conf));   //
+ 2e8:	47 e0       	ldi	r20, 0x07	; 7
+ 2ea:	50 e0       	ldi	r21, 0x00	; 0
+ 2ec:	60 e0       	ldi	r22, 0x00	; 0
+ 2ee:	70 e0       	ldi	r23, 0x00	; 0
+ 2f0:	8c e2       	ldi	r24, 0x2C	; 44
+ 2f2:	91 e0       	ldi	r25, 0x01	; 1
+ 2f4:	0e 94 36 04 	call	0x86c	; 0x86c <eeprom_read_block>
+	Для изменения значения предделителя сначала в него необходимо записать 1, 
+	при этом стоит учесть, что в остальные биты данного регистра должно быть записано значение 0. 
+	После этого в течении четырех машинных циклов необходимо изменить значение предделителя записью соответствующих битов. 
+	По прошествии четырех машинных циклов бит CLKPCE сбрасывается в 0.*/
+	//CLKPR=(1<<CLKPCE);
+	CLKPR=(0<<CLKPCE) | (0<<CLKPS3) | (0<<CLKPS2) | (0<<CLKPS1) | (0<<CLKPS0);
+ 2f8:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__TEXT_REGION_LENGTH__+0x7e0061>
+			(1<<DDB5) | // Выход	LED_RAZR 
+			(1<<DDB4) | // Выход	LED_ZAR
+			(1<<DDB3) | // Выход	LED_ERR
+			(1<<DDB2) | // Выход	LED_PWR
+			(0<<DDB1) | // Вход		KN
+			(1<<DDB0);  // Выход	индикация автономного режима
+ 2fc:	8d e3       	ldi	r24, 0x3D	; 61
+ 2fe:	84 b9       	out	0x04, r24	; 4
+			(0<<PORTB5) | 
+			(0<<PORTB4) | 
+			(0<<PORTB3) | 
+			(0<<PORTB2) | 
+			(1<<PORTB1) | 	
+			(0<<PORTB0);	// Вкл
+ 300:	82 e0       	ldi	r24, 0x02	; 2
+ 302:	85 b9       	out	0x05, r24	; 5
+			(0<<DDC5) | 	// Вход
+			(0<<DDC4) | 	// Вход
+			(0<<DDC3) | 	// Вход		U_IN
+			(0<<DDC2) | 	// Вход		U_BAT
+			(0<<DDC1) | 	// Вход		U_OUT
+			(0<<DDC0);		// Вход
+ 304:	17 b8       	out	0x07, r1	; 7
+			(0<<PORTC5) | 
+			(0<<PORTC4) | 
+			(0<<PORTC3) | 
+			(0<<PORTC2) | 
+			(0<<PORTC1) | 
+			(0<<PORTC0);
+ 306:	18 b8       	out	0x08, r1	; 8
+			(1<<DDD5) | 	// Выход	OUT_BAT
+			(1<<DDD4) | 	// Выход	ZAR 		
+			(1<<DDD3) | 	// Выход	PREOBR
+			(1<<DDD2) | 	// Выход
+			(0<<DDD1) | 	// Вход	tx
+			(0<<DDD0);		// Вход		rx
+ 308:	8c ef       	ldi	r24, 0xFC	; 252
+ 30a:	8a b9       	out	0x0a, r24	; 10
+			(0<<PORTD5) | 	//
+			(0<<PORTD4) | 	//
+			(0<<PORTD3) | 	//
+			(0<<PORTD2) | 	//
+			(0<<PORTD1) | 	//
+			(0<<PORTD0);	//
+ 30c:	1b b8       	out	0x0b, r1	; 11
+	TCCR0A=	(0<<COM0A1) | 
+			(0<<COM0A0) | 
+			(0<<COM0B1) |	// Режим ШИМ 00 : вывод OC0A не функционирует
+			(0<<COM0B0) | 
+			(0<<WGM01) |	
+			(0<<WGM00);
+ 30e:	14 bc       	out	0x24, r1	; 36
+	//	WGM00..WGM02 = 0 :нормальный режим работы	
+	TCCR0B=	(0<<WGM02) | 
+			(1<<CS02) | 
+			(0<<CS01) | 
+			(1<<CS00);			//деление на 1024
+ 310:	85 e0       	ldi	r24, 0x05	; 5
+ 312:	85 bd       	out	0x25, r24	; 37
+	//		
+	//TCNT0=0x00;
+	//
+	OCR0A=0x00;					//регистр сравнения А
+ 314:	17 bc       	out	0x27, r1	; 39
+	//
+	OCR0B=0x00;					//регистр сравнения В
+ 316:	18 bc       	out	0x28, r1	; 40
+	TCCR1A=	(0<<COM1A1) |		//Режим ШИМ 00 : вывод не функционирует
+			(0<<COM1A0) |
+			(0<<COM1B1) |
+			(0<<COM1B0) |
+			(0<<WGM11) |
+			(0<<WGM10);
+ 318:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7e0080>
+			(0<<ICES1) | 
+			(0<<WGM13) | 
+			(0<<WGM12) | 
+			(1<<CS12) |			////деление на 1024
+			(0<<CS11) | 
+			(1<<CS10);
+ 31c:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7e0081>
+	//		
+	TCNT1H=0x00;	//
+ 320:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
+	TCNT1L=0x00;	//
+ 324:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
+	ICR1H=0x00;		//
+ 328:	10 92 87 00 	sts	0x0087, r1	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
+	ICR1L=0x00;		//
+ 32c:	10 92 86 00 	sts	0x0086, r1	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+	OCR1AH=0x00;	//
+ 330:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
+	OCR1AL=0x00;	//
+ 334:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
+	OCR1BH=0x00;	//
+ 338:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
+	OCR1BL=0x00;	//
+ 33c:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
+	// ------------------------------------------------------------
+	// Инициализация Таймеров / Счетчиков (Timer/Counter 2)
+	// ------------------------------------------------------------
+	//
+	ASSR=	(0<<EXCLK) | ////устанавливается в 0 для тактирования от кварца
+			(1<<AS2);//синхронизация по кварцу
+ 340:	90 e2       	ldi	r25, 0x20	; 32
+ 342:	90 93 b6 00 	sts	0x00B6, r25	; 0x8000b6 <__TEXT_REGION_LENGTH__+0x7e00b6>
+	TCCR2A=	(0<<COM2A1) | 
+			(0<<COM2A0) | 
+			(0<<COM2B1) | 
+			(0<<COM2B0) | 
+			(0<<WGM21) | 
+			(0<<WGM20);
+ 346:	10 92 b0 00 	sts	0x00B0, r1	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
+	//		
+	TCCR2B=	(0<<WGM22) | 
+			(1<<CS22) | 
+			(0<<CS21) | 
+			(1<<CS20);
+ 34a:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__TEXT_REGION_LENGTH__+0x7e00b1>
+	//		
+	TCNT2=0x00;
+ 34e:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+	OCR2A=0x00;
+ 352:	10 92 b3 00 	sts	0x00B3, r1	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7e00b3>
+	OCR2B=0x00;
+ 356:	10 92 b4 00 	sts	0x00B4, r1	; 0x8000b4 <__TEXT_REGION_LENGTH__+0x7e00b4>
+
+	//у всех счетчиков вызов прерывания по переполнению
+	// Timer/Counter 0 Interrupt(s) initialization
+	TIMSK0=	(0<<OCIE0B) | 
+			(0<<OCIE0A) | 
+			(1<<TOIE0);		//разрешить прерывание по переполнению
+ 35a:	81 e0       	ldi	r24, 0x01	; 1
+ 35c:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
+			//(0<<TOIE0);
+	// Timer/Counter 1 Interrupt(s) initialization
+	TIMSK1=	(0<<ICIE1) | 
+			(0<<OCIE1B) | 
+			(0<<OCIE1A) | 
+			(1<<TOIE1);		//разрешить прерывание по переполнению
+ 360:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7e006f>
+			//(0<<TOIE1);
+	// Timer/Counter 2 Interrupt(s) initialization
+	TIMSK2=	(0<<OCIE2B) | 
+			(0<<OCIE2A) | 
+			//(1<<TOIE2);		//разрешить прерывание по переполнению
+			(0<<TOIE2);
+ 364:	10 92 70 00 	sts	0x0070, r1	; 0x800070 <__TEXT_REGION_LENGTH__+0x7e0070>
+	// Прерывание при любом изменении  на  PCINT8-14: Off
+	// Прерывание при любом изменении  на  PCINT16-23: Off
+	EICRA=	(0<<ISC11) | 
+			(0<<ISC10) | 
+			(0<<ISC01) | 
+			(0<<ISC00);
+ 368:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <__TEXT_REGION_LENGTH__+0x7e0069>
+	EIMSK=	(0<<INT1) | 	// Выкл
+			(0<<INT0);		// Выкл
+ 36c:	1d ba       	out	0x1d, r1	; 29
+	PCICR=	(0<<PCIE2) | 
+			(0<<PCIE1) | 
+			(0<<PCIE0);
+ 36e:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <__TEXT_REGION_LENGTH__+0x7e0068>
+			(0<<ACO) | 
+			(0<<ACI) | 
+			(0<<ACIE) | 
+			(0<<ACIC) | 
+			(0<<ACIS1) | 
+			(0<<ACIS0);
+ 372:	80 e8       	ldi	r24, 0x80	; 128
+ 374:	80 bf       	out	0x30, r24	; 48
+	// Цифровой входной буфер на AIN0: выключен(1)
+	// Цифровой входной буфер на AIN1: выключен(1)
+	DIDR1=	(0<<AIN0D) | 
+			(0<<AIN1D);
+ 376:	10 92 7f 00 	sts	0x007F, r1	; 0x80007f <__TEXT_REGION_LENGTH__+0x7e007f>
+	DIDR0=	(1<<ADC5D) | 
+			(1<<ADC4D) | 
+			(0<<ADC3D) | 
+			(0<<ADC2D) | 
+			(0<<ADC1D) | 
+			(0<<ADC0D);
+ 37a:	80 e3       	ldi	r24, 0x30	; 48
+ 37c:	80 93 7e 00 	sts	0x007E, r24	; 0x80007e <__TEXT_REGION_LENGTH__+0x7e007e>
+	//		
+	ADMUX=ADC_VREF_TYPE;
+ 380:	80 ec       	ldi	r24, 0xC0	; 192
+ 382:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+			(0<<ADATE) | //позволяет запускать преобразование по прерыванию от переферийных устройств микроконтроллера если установить в 1.
+			(0<<ADIF) | //флаг прерывания от АЦП
+			(0<<ADIE) | //разрешает прерывания от АЦП если установлен в 1
+			(1<<ADPS2) | //Биты ADPS2 - ADPS0 (2 - 0) регистра ADCSRA выбирают режим работы предделителя тактовой частоты:110 - CLK/128
+			(1<<ADPS1) | 
+			(1<<ADPS0);
+ 386:	87 ec       	ldi	r24, 0xC7	; 199
+ 388:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+	//	Биты ADTS2 - ADTS0 (2 - 0) регистра ADCSRB выбирают источник сигнала по которому будет начинаться преобразование АЦП:000 - непрерывное преобразование	
+	ADCSRB=	(0<<ADTS2) | 
+			(0<<ADTS1) | 
+			(0<<ADTS0);
+ 38c:	10 92 7b 00 	sts	0x007B, r1	; 0x80007b <__TEXT_REGION_LENGTH__+0x7e007b>
+			(0<<DORD) | 
+			(0<<MSTR) | 
+			(0<<CPOL) | 
+			(0<<CPHA) | 
+			(0<<SPR1) | 
+			(0<<SPR0);
+ 390:	1c bc       	out	0x2c, r1	; 44
+	// TWI отключен
+	TWCR=	(0<<TWEA) | 
+			(0<<TWSTA) | 
+			(0<<TWSTO) | 
+			(0<<TWEN) | 
+			(0<<TWIE);
+ 392:	10 92 bc 00 	sts	0x00BC, r1	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+
+	// Инициализация сторожевого таймера (Watchdog Timer)
+	// Предделитель Watchdog Timer (Prescaler): OSC/32k
+	// Действие Watchdog timeout: Reset (Перезагрузка)
+	
+	asm("wdr");	//
+ 396:	a8 95       	wdr
+			(0<<WDE) |	//Сброс сторожевого таймера включен
+			// Watchdog Timer 2.0 s
+			(1<<WDP3) | 
+			(0<<WDP2) | 
+			(0<<WDP1) | 
+			(1<<WDP0);
+ 398:	e0 e6       	ldi	r30, 0x60	; 96
+ 39a:	f0 e0       	ldi	r31, 0x00	; 0
+ 39c:	80 81       	ld	r24, Z
+ 39e:	81 62       	ori	r24, 0x21	; 33
+ 3a0:	80 83       	st	Z, r24
+			
+	MCUSR = (1<<WDRF);
+ 3a2:	88 e0       	ldi	r24, 0x08	; 8
+ 3a4:	84 bf       	out	0x34, r24	; 52
+/*	*/
+	
+	//настройка USART
+	USART_Init(cfg.brate);
+ 3a6:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <cfg>
+ 3aa:	90 91 2d 01 	lds	r25, 0x012D	; 0x80012d <cfg+0x1>
+ 3ae:	0e 94 64 01 	call	0x2c8	; 0x2c8 <_Z10USART_Initj>
+	//USART_Init(BR_9600);
+	asm("sei"); //
+ 3b2:	78 94       	sei
+ 3b4:	08 95       	ret
+
+000003b6 <_Z8transmitPhh>:
+
+void transmit(unsigned char *data, uint8_t sz)
+{
+
+	unsigned char i;
+	SetBit(PORTD, DRAWE);					// Переключить Max485 на передачу
+ 3b6:	5a 9a       	sbi	0x0b, 2	; 11
+	SetBit(UCSR0B, TXEN0);					// Разрешить передачу с МК
+ 3b8:	20 91 c1 00 	lds	r18, 0x00C1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+ 3bc:	28 60       	ori	r18, 0x08	; 8
+ 3be:	20 93 c1 00 	sts	0x00C1, r18	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+ 3c2:	28 2f       	mov	r18, r24
+ 3c4:	fc 01       	movw	r30, r24
+	for(i=0; i<sz; ++i)
+ 3c6:	8e 2f       	mov	r24, r30
+ 3c8:	82 1b       	sub	r24, r18
+ 3ca:	86 17       	cp	r24, r22
+ 3cc:	40 f4       	brcc	.+16     	; 0x3de <_Z8transmitPhh+0x28>
+	{	
+								// Поместить данные в UDR, немедленная передача
+	
+		while ( !( UCSR0A & (1<<UDRE0) ) );	// Ждать очистки буфера(установка флага) для новой передачи.устанавливвается 1 после очистки буфера
+ 3ce:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7e00c0>
+ 3d2:	85 ff       	sbrs	r24, 5
+ 3d4:	fc cf       	rjmp	.-8      	; 0x3ce <_Z8transmitPhh+0x18>
+		UDR0 = data[i];
+ 3d6:	81 91       	ld	r24, Z+
+ 3d8:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+{
+
+	unsigned char i;
+	SetBit(PORTD, DRAWE);					// Переключить Max485 на передачу
+	SetBit(UCSR0B, TXEN0);					// Разрешить передачу с МК
+	for(i=0; i<sz; ++i)
+ 3dc:	f4 cf       	rjmp	.-24     	; 0x3c6 <_Z8transmitPhh+0x10>
+								// Поместить данные в UDR, немедленная передача
+	
+		while ( !( UCSR0A & (1<<UDRE0) ) );	// Ждать очистки буфера(установка флага) для новой передачи.устанавливвается 1 после очистки буфера
+		UDR0 = data[i];
+	}
+	UDR0='\n';
+ 3de:	8a e0       	ldi	r24, 0x0A	; 10
+ 3e0:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+	timer1ms = 0;							// включаем задержку 1 мс//   
+ 3e4:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <timer1ms>
+	//while(!timer1ms);						// ждем	//  ПРОГРАММА ВИСНЕТ НА ЭТОМ МЕСТЕ!!!!!!!!!
+	ClrBit(UCSR0B, TXEN0);					// Запретить передачу с МК
+ 3e8:	80 91 c1 00 	lds	r24, 0x00C1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+ 3ec:	87 7f       	andi	r24, 0xF7	; 247
+ 3ee:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+	ClrBit(PORTD,DRAWE);				// Переключить на приём, т.е. вывести "0"
+ 3f2:	5a 98       	cbi	0x0b, 2	; 11
+ 3f4:	08 95       	ret
+
+000003f6 <_Z5crc16Pch>:
+
+/**********************************************************
+ * Расчет crc16 кода
+ *********************************************************/
+uint16_t crc16(char *in, uint8_t size)
+{
+ 3f6:	38 2f       	mov	r19, r24
+ 3f8:	fc 01       	movw	r30, r24
+	unsigned int crc = 0xffff;
+ 3fa:	8f ef       	ldi	r24, 0xFF	; 255
+ 3fc:	9f ef       	ldi	r25, 0xFF	; 255
+	unsigned char sz;
+	unsigned char s;
+	
+	for(sz=0; sz<size; sz++) 
+ 3fe:	2e 2f       	mov	r18, r30
+ 400:	23 1b       	sub	r18, r19
+ 402:	26 17       	cp	r18, r22
+ 404:	90 f4       	brcc	.+36     	; 0x42a <__LOCK_REGION_LENGTH__+0x2a>
+	{
+		crc ^=	 in[sz];
+ 406:	21 91       	ld	r18, Z+
+ 408:	82 27       	eor	r24, r18
+ 40a:	28 e0       	ldi	r18, 0x08	; 8
+ 40c:	ac 01       	movw	r20, r24
+ 40e:	56 95       	lsr	r21
+ 410:	47 95       	ror	r20
+		for(s=0; s<8 ;++s) 
+		{
+			if(crc & 0x0001) 
+ 412:	80 ff       	sbrs	r24, 0
+ 414:	06 c0       	rjmp	.+12     	; 0x422 <__LOCK_REGION_LENGTH__+0x22>
+			{
+				crc = (crc>>1) ^ 0xA001;
+ 416:	ca 01       	movw	r24, r20
+ 418:	71 e0       	ldi	r23, 0x01	; 1
+ 41a:	87 27       	eor	r24, r23
+ 41c:	70 ea       	ldi	r23, 0xA0	; 160
+ 41e:	97 27       	eor	r25, r23
+				continue;
+ 420:	01 c0       	rjmp	.+2      	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+			}
+			crc >>=1;
+ 422:	ca 01       	movw	r24, r20
+ 424:	21 50       	subi	r18, 0x01	; 1
+	unsigned char s;
+	
+	for(sz=0; sz<size; sz++) 
+	{
+		crc ^=	 in[sz];
+		for(s=0; s<8 ;++s) 
+ 426:	91 f7       	brne	.-28     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
+ 428:	ea cf       	rjmp	.-44     	; 0x3fe <_Z5crc16Pch+0x8>
+			}
+			crc >>=1;
+		}
+	}
+	return(crc);
+}
+ 42a:	08 95       	ret
+
+0000042c <_Z8read_adch>:
+*/
+//функция чтения с аналогового входа
+//возвращает цифровой код 0..1024
+unsigned int read_adc(unsigned char adc_input)
+{
+	ADMUX = ADC_VREF_TYPE | adc_input;
+ 42c:	80 6c       	ori	r24, 0xC0	; 192
+ 42e:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 432:	85 e3       	ldi	r24, 0x35	; 53
+ 434:	8a 95       	dec	r24
+ 436:	f1 f7       	brne	.-4      	; 0x434 <_Z8read_adch+0x8>
+ 438:	00 00       	nop
+	//Задержка необходима для стабилизации входного напряжения АЦП
+	_delay_us(10);
+	//начало преобразования
+	ADCSRA|=(1<<ADSC);
+ 43a:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+ 43e:	80 64       	ori	r24, 0x40	; 64
+ 440:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+	// Дождитесь завершения конвертации AD
+	while ((ADCSRA & (1<<ADIF))==0);
+ 444:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+ 448:	84 ff       	sbrs	r24, 4
+ 44a:	fc cf       	rjmp	.-8      	; 0x444 <_Z8read_adch+0x18>
+	ADCSRA|=(1<<ADIF);
+ 44c:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+ 450:	80 61       	ori	r24, 0x10	; 16
+ 452:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+	return (uint16_t)ADC;
+ 456:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 45a:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+}
+ 45e:	08 95       	ret
+
+00000460 <_Z8razb_pacv>:
+
+/**
+* обработка входных данных
+*/
+uint8_t razb_pac (void)
+{
+ 460:	cf 93       	push	r28
+ 462:	df 93       	push	r29
+	uint8_t pr= 0;	// признак изменения конфигурации
+	uint8_t len=0;	// размер принятого пакета
+	// принятые данные хранятся в буфере usart_buf
+	// считываем сетевой номер прибора (в 0 байте)
+	// по этому же адресу и будем отправлять ответ
+	usart_buf[0] = cfg.adr;	
+ 464:	90 91 2e 01 	lds	r25, 0x012E	; 0x80012e <cfg+0x2>
+ 468:	90 93 18 01 	sts	0x0118, r25	; 0x800118 <usart_buf>
+	// тип устройства фиксирован в протоколе
+	usart_buf[3] = TYPE_DEF;	
+ 46c:	85 e0       	ldi	r24, 0x05	; 5
+ 46e:	80 93 1b 01 	sts	0x011B, r24	; 0x80011b <usart_buf+0x3>
+	// проверить номер функции в 1 байте
+	// номер функции в ответе тот же
+	switch(usart_buf[1]) 
+ 472:	80 91 19 01 	lds	r24, 0x0119	; 0x800119 <usart_buf+0x1>
+ 476:	84 30       	cpi	r24, 0x04	; 4
+ 478:	09 f4       	brne	.+2      	; 0x47c <_Z8razb_pacv+0x1c>
+ 47a:	a1 c0       	rjmp	.+322    	; 0x5be <_Z8razb_pacv+0x15e>
+ 47c:	80 31       	cpi	r24, 0x10	; 16
+ 47e:	09 f4       	brne	.+2      	; 0x482 <_Z8razb_pacv+0x22>
+ 480:	54 c0       	rjmp	.+168    	; 0x52a <_Z8razb_pacv+0xca>
+ 482:	83 30       	cpi	r24, 0x03	; 3
+ 484:	09 f0       	breq	.+2      	; 0x488 <_Z8razb_pacv+0x28>
+ 486:	c8 c0       	rjmp	.+400    	; 0x618 <_Z8razb_pacv+0x1b8>
+	{
+		case 0x03:	//чтение конфигурации устройства
+			// формируем ответ:
+			usart_buf[2] = 0x12;		// длина пакета ответа (18 байт) фиксирована в протоколе			
+ 488:	82 e1       	ldi	r24, 0x12	; 18
+ 48a:	80 93 1a 01 	sts	0x011A, r24	; 0x80011a <usart_buf+0x2>
+			usart_buf[4] = cfg.adr;		//сетевой адрес из конфигурации 
+ 48e:	90 93 1c 01 	sts	0x011C, r25	; 0x80011c <usart_buf+0x4>
+			// скорость из конфигурации(5-й байт)
+			switch(cfg.brate)
+ 492:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <cfg>
+ 496:	90 91 2d 01 	lds	r25, 0x012D	; 0x80012d <cfg+0x1>
+ 49a:	83 33       	cpi	r24, 0x33	; 51
+ 49c:	91 05       	cpc	r25, r1
+ 49e:	d9 f0       	breq	.+54     	; 0x4d6 <_Z8razb_pacv+0x76>
+ 4a0:	50 f4       	brcc	.+20     	; 0x4b6 <_Z8razb_pacv+0x56>
+ 4a2:	80 31       	cpi	r24, 0x10	; 16
+ 4a4:	91 05       	cpc	r25, r1
+ 4a6:	d9 f0       	breq	.+54     	; 0x4de <_Z8razb_pacv+0x7e>
+ 4a8:	89 31       	cpi	r24, 0x19	; 25
+ 4aa:	91 05       	cpc	r25, r1
+ 4ac:	b1 f0       	breq	.+44     	; 0x4da <_Z8razb_pacv+0x7a>
+ 4ae:	07 97       	sbiw	r24, 0x07	; 7
+ 4b0:	c9 f4       	brne	.+50     	; 0x4e4 <_Z8razb_pacv+0x84>
+				case BR_4800: usart_buf[5] = ABR_4800; break;		//скорость 4800
+				case BR_9600: usart_buf[5] = ABR_9600; break;		//скорость 9600
+				case BR_19200: usart_buf[5] = ABR_19200; break;		//скорость 19200 
+				case BR_38400: usart_buf[5] = ABR_38400; break;		//скорость 38400
+				case BR_57600: usart_buf[5] = ABR_57600; break;		//скорость 57600
+				case BR_115200: usart_buf[5] = ABR_115200; break;	//скорость 115200
+ 4b2:	83 e7       	ldi	r24, 0x73	; 115
+ 4b4:	15 c0       	rjmp	.+42     	; 0x4e0 <_Z8razb_pacv+0x80>
+		case 0x03:	//чтение конфигурации устройства
+			// формируем ответ:
+			usart_buf[2] = 0x12;		// длина пакета ответа (18 байт) фиксирована в протоколе			
+			usart_buf[4] = cfg.adr;		//сетевой адрес из конфигурации 
+			// скорость из конфигурации(5-й байт)
+			switch(cfg.brate)
+ 4b6:	8f 3c       	cpi	r24, 0xCF	; 207
+ 4b8:	91 05       	cpc	r25, r1
+ 4ba:	59 f0       	breq	.+22     	; 0x4d2 <_Z8razb_pacv+0x72>
+ 4bc:	8f 39       	cpi	r24, 0x9F	; 159
+ 4be:	21 e0       	ldi	r18, 0x01	; 1
+ 4c0:	92 07       	cpc	r25, r18
+ 4c2:	29 f0       	breq	.+10     	; 0x4ce <_Z8razb_pacv+0x6e>
+ 4c4:	87 36       	cpi	r24, 0x67	; 103
+ 4c6:	91 05       	cpc	r25, r1
+ 4c8:	69 f4       	brne	.+26     	; 0x4e4 <_Z8razb_pacv+0x84>
+			{
+				case BR_2400: usart_buf[5] = ABR_2400; break;		//скорость 2400
+				case BR_4800: usart_buf[5] = ABR_4800; break;		//скорость 4800
+				case BR_9600: usart_buf[5] = ABR_9600; break;		//скорость 9600
+ 4ca:	80 e6       	ldi	r24, 0x60	; 96
+ 4cc:	09 c0       	rjmp	.+18     	; 0x4e0 <_Z8razb_pacv+0x80>
+			usart_buf[2] = 0x12;		// длина пакета ответа (18 байт) фиксирована в протоколе			
+			usart_buf[4] = cfg.adr;		//сетевой адрес из конфигурации 
+			// скорость из конфигурации(5-й байт)
+			switch(cfg.brate)
+			{
+				case BR_2400: usart_buf[5] = ABR_2400; break;		//скорость 2400
+ 4ce:	88 e1       	ldi	r24, 0x18	; 24
+ 4d0:	07 c0       	rjmp	.+14     	; 0x4e0 <_Z8razb_pacv+0x80>
+				case BR_4800: usart_buf[5] = ABR_4800; break;		//скорость 4800
+ 4d2:	80 e3       	ldi	r24, 0x30	; 48
+ 4d4:	05 c0       	rjmp	.+10     	; 0x4e0 <_Z8razb_pacv+0x80>
+				case BR_9600: usart_buf[5] = ABR_9600; break;		//скорость 9600
+				case BR_19200: usart_buf[5] = ABR_19200; break;		//скорость 19200 
+ 4d6:	83 e1       	ldi	r24, 0x13	; 19
+ 4d8:	03 c0       	rjmp	.+6      	; 0x4e0 <_Z8razb_pacv+0x80>
+				case BR_38400: usart_buf[5] = ABR_38400; break;		//скорость 38400
+ 4da:	86 e2       	ldi	r24, 0x26	; 38
+ 4dc:	01 c0       	rjmp	.+2      	; 0x4e0 <_Z8razb_pacv+0x80>
+				case BR_57600: usart_buf[5] = ABR_57600; break;		//скорость 57600
+ 4de:	89 e3       	ldi	r24, 0x39	; 57
+				case BR_115200: usart_buf[5] = ABR_115200; break;	//скорость 115200
+ 4e0:	80 93 1d 01 	sts	0x011D, r24	; 0x80011d <usart_buf+0x5>
+				 
+			}
+			*((unsigned short int*)(usart_buf+6)) = cfg.Uz;									// напряжение окончания заряда 
+ 4e4:	80 91 2f 01 	lds	r24, 0x012F	; 0x80012f <cfg+0x3>
+ 4e8:	90 91 30 01 	lds	r25, 0x0130	; 0x800130 <cfg+0x4>
+ 4ec:	90 93 1f 01 	sts	0x011F, r25	; 0x80011f <usart_buf+0x7>
+ 4f0:	80 93 1e 01 	sts	0x011E, r24	; 0x80011e <usart_buf+0x6>
+			*((unsigned short int*)(usart_buf+8)) = cfg.Um;									// напряжение начала заряда			
+ 4f4:	80 91 31 01 	lds	r24, 0x0131	; 0x800131 <cfg+0x5>
+ 4f8:	90 91 32 01 	lds	r25, 0x0132	; 0x800132 <cfg+0x6>
+ 4fc:	90 93 21 01 	sts	0x0121, r25	; 0x800121 <usart_buf+0x9>
+ 500:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <usart_buf+0x8>
+			*((unsigned long*)(usart_buf+10)) = SERIAL_NUMBER;		//серийный номер (8,9,10,11 байт)
+ 504:	85 e7       	ldi	r24, 0x75	; 117
+ 506:	9c e7       	ldi	r25, 0x7C	; 124
+ 508:	a7 e8       	ldi	r26, 0x87	; 135
+ 50a:	bb e6       	ldi	r27, 0x6B	; 107
+ 50c:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <usart_buf+0xa>
+ 510:	90 93 23 01 	sts	0x0123, r25	; 0x800123 <usart_buf+0xb>
+ 514:	a0 93 24 01 	sts	0x0124, r26	; 0x800124 <usart_buf+0xc>
+ 518:	b0 93 25 01 	sts	0x0125, r27	; 0x800125 <usart_buf+0xd>
+			usart_buf[14] = VERSION_Y;								//версия ПО мажор (12 байт)
+ 51c:	84 e0       	ldi	r24, 0x04	; 4
+ 51e:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <usart_buf+0xe>
+			usart_buf[15] = VERSION_X;								//версия ПО минор(13 байт)
+ 522:	82 e0       	ldi	r24, 0x02	; 2
+ 524:	80 93 27 01 	sts	0x0127, r24	; 0x800127 <usart_buf+0xf>
+ 528:	7d c0       	rjmp	.+250    	; 0x624 <_Z8razb_pacv+0x1c4>
+			// пакет ответа сформирован
+			break;
+		case 0x10: 	//изменение конфигурации устройства
+				//запись предделителя (4 байт в пакете)
+				switch(usart_buf[4])
+ 52a:	80 91 1c 01 	lds	r24, 0x011C	; 0x80011c <usart_buf+0x4>
+ 52e:	80 33       	cpi	r24, 0x30	; 48
+ 530:	b1 f0       	breq	.+44     	; 0x55e <_Z8razb_pacv+0xfe>
+ 532:	48 f4       	brcc	.+18     	; 0x546 <_Z8razb_pacv+0xe6>
+ 534:	88 31       	cpi	r24, 0x18	; 24
+ 536:	81 f0       	breq	.+32     	; 0x558 <_Z8razb_pacv+0xf8>
+ 538:	86 32       	cpi	r24, 0x26	; 38
+ 53a:	b9 f0       	breq	.+46     	; 0x56a <_Z8razb_pacv+0x10a>
+ 53c:	83 31       	cpi	r24, 0x13	; 19
+ 53e:	f1 f4       	brne	.+60     	; 0x57c <_Z8razb_pacv+0x11c>
+					break;
+					case ABR_4800:cfg.brate = BR_4800;
+					break;
+					case ABR_9600:cfg.brate = BR_9600;
+					break;
+					case ABR_19200:cfg.brate = BR_19200;
+ 540:	83 e3       	ldi	r24, 0x33	; 51
+ 542:	90 e0       	ldi	r25, 0x00	; 0
+ 544:	17 c0       	rjmp	.+46     	; 0x574 <_Z8razb_pacv+0x114>
+			usart_buf[15] = VERSION_X;								//версия ПО минор(13 байт)
+			// пакет ответа сформирован
+			break;
+		case 0x10: 	//изменение конфигурации устройства
+				//запись предделителя (4 байт в пакете)
+				switch(usart_buf[4])
+ 546:	80 36       	cpi	r24, 0x60	; 96
+ 548:	69 f0       	breq	.+26     	; 0x564 <_Z8razb_pacv+0x104>
+ 54a:	83 37       	cpi	r24, 0x73	; 115
+ 54c:	89 f0       	breq	.+34     	; 0x570 <_Z8razb_pacv+0x110>
+ 54e:	89 33       	cpi	r24, 0x39	; 57
+ 550:	a9 f4       	brne	.+42     	; 0x57c <_Z8razb_pacv+0x11c>
+					break;
+					case ABR_19200:cfg.brate = BR_19200;
+					break;
+					case ABR_38400:cfg.brate = BR_38400;
+					break;
+					case ABR_57600:cfg.brate = BR_57600;
+ 552:	80 e1       	ldi	r24, 0x10	; 16
+ 554:	90 e0       	ldi	r25, 0x00	; 0
+ 556:	0e c0       	rjmp	.+28     	; 0x574 <_Z8razb_pacv+0x114>
+			break;
+		case 0x10: 	//изменение конфигурации устройства
+				//запись предделителя (4 байт в пакете)
+				switch(usart_buf[4])
+				{
+					case ABR_2400:cfg.brate = BR_2400;
+ 558:	8f e9       	ldi	r24, 0x9F	; 159
+ 55a:	91 e0       	ldi	r25, 0x01	; 1
+ 55c:	0b c0       	rjmp	.+22     	; 0x574 <_Z8razb_pacv+0x114>
+					break;
+					case ABR_4800:cfg.brate = BR_4800;
+ 55e:	8f ec       	ldi	r24, 0xCF	; 207
+ 560:	90 e0       	ldi	r25, 0x00	; 0
+ 562:	08 c0       	rjmp	.+16     	; 0x574 <_Z8razb_pacv+0x114>
+					break;
+					case ABR_9600:cfg.brate = BR_9600;
+ 564:	87 e6       	ldi	r24, 0x67	; 103
+ 566:	90 e0       	ldi	r25, 0x00	; 0
+ 568:	05 c0       	rjmp	.+10     	; 0x574 <_Z8razb_pacv+0x114>
+					break;
+					case ABR_19200:cfg.brate = BR_19200;
+					break;
+					case ABR_38400:cfg.brate = BR_38400;
+ 56a:	89 e1       	ldi	r24, 0x19	; 25
+ 56c:	90 e0       	ldi	r25, 0x00	; 0
+ 56e:	02 c0       	rjmp	.+4      	; 0x574 <_Z8razb_pacv+0x114>
+					break;
+					case ABR_57600:cfg.brate = BR_57600;
+					break;
+					case ABR_115200:cfg.brate = BR_115200;
+ 570:	87 e0       	ldi	r24, 0x07	; 7
+ 572:	90 e0       	ldi	r25, 0x00	; 0
+ 574:	90 93 2d 01 	sts	0x012D, r25	; 0x80012d <cfg+0x1>
+ 578:	80 93 2c 01 	sts	0x012C, r24	; 0x80012c <cfg>
+					break;						
+				}
+				// записываем сетевой адрес (5-й байт в пакете)
+				cfg.adr = usart_buf[5];					
+ 57c:	80 91 1d 01 	lds	r24, 0x011D	; 0x80011d <usart_buf+0x5>
+ 580:	80 93 2e 01 	sts	0x012E, r24	; 0x80012e <cfg+0x2>
+				// напряжение окончания заряда (6-й байт в пакете)	
+				cfg.Uz = *((unsigned short int*)(usart_buf+6));					
+ 584:	80 91 1e 01 	lds	r24, 0x011E	; 0x80011e <usart_buf+0x6>
+ 588:	90 91 1f 01 	lds	r25, 0x011F	; 0x80011f <usart_buf+0x7>
+ 58c:	90 93 30 01 	sts	0x0130, r25	; 0x800130 <cfg+0x4>
+ 590:	80 93 2f 01 	sts	0x012F, r24	; 0x80012f <cfg+0x3>
+				// напряжение начала заряда (7-й байт в пакете)
+				cfg.Um = *((unsigned short int*)(usart_buf+8));							
+ 594:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <usart_buf+0x8>
+ 598:	90 91 21 01 	lds	r25, 0x0121	; 0x800121 <usart_buf+0x9>
+ 59c:	90 93 32 01 	sts	0x0132, r25	; 0x800132 <cfg+0x6>
+ 5a0:	80 93 31 01 	sts	0x0131, r24	; 0x800131 <cfg+0x5>
+				// сохранить новую конфигурацию
+				eeprom_write_block(&cfg,&ee_cfg, sizeof(conf));		
+ 5a4:	47 e0       	ldi	r20, 0x07	; 7
+ 5a6:	50 e0       	ldi	r21, 0x00	; 0
+ 5a8:	60 e0       	ldi	r22, 0x00	; 0
+ 5aa:	70 e0       	ldi	r23, 0x00	; 0
+ 5ac:	8c e2       	ldi	r24, 0x2C	; 44
+ 5ae:	91 e0       	ldi	r25, 0x01	; 1
+ 5b0:	0e 94 46 04 	call	0x88c	; 0x88c <eeprom_write_block>
+				// устанавливаем признак изменения конфигурации	
+				pr = 1;													
+				// формируем ответ				
+				usart_buf[2] = 0x06;		//длина пакета (2-й байт) 
+ 5b4:	86 e0       	ldi	r24, 0x06	; 6
+ 5b6:	80 93 1a 01 	sts	0x011A, r24	; 0x80011a <usart_buf+0x2>
+				// напряжение начала заряда (7-й байт в пакете)
+				cfg.Um = *((unsigned short int*)(usart_buf+8));							
+				// сохранить новую конфигурацию
+				eeprom_write_block(&cfg,&ee_cfg, sizeof(conf));		
+				// устанавливаем признак изменения конфигурации	
+				pr = 1;													
+ 5ba:	d1 e0       	ldi	r29, 0x01	; 1
+				// формируем ответ				
+				usart_buf[2] = 0x06;		//длина пакета (2-й байт) 
+				break;
+ 5bc:	34 c0       	rjmp	.+104    	; 0x626 <_Z8razb_pacv+0x1c6>
+		case 0x04: //чтение состояния
+				// формируем ответ
+				
+				usart_buf[2] = 0x11;		//длина пакета из протокола
+ 5be:	81 e1       	ldi	r24, 0x11	; 17
+ 5c0:	80 93 1a 01 	sts	0x011A, r24	; 0x80011a <usart_buf+0x2>
+				usart_buf[4] = flagi;		// байт флагов состояния	
+ 5c4:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 5c8:	80 93 1c 01 	sts	0x011C, r24	; 0x80011c <usart_buf+0x4>
+				*((unsigned long*)(usart_buf+5)) = Tp;	// оставшееся время работы	байты 5,6,7,8	
+ 5cc:	80 91 11 01 	lds	r24, 0x0111	; 0x800111 <Tp>
+ 5d0:	90 91 12 01 	lds	r25, 0x0112	; 0x800112 <Tp+0x1>
+ 5d4:	09 2e       	mov	r0, r25
+ 5d6:	00 0c       	add	r0, r0
+ 5d8:	aa 0b       	sbc	r26, r26
+ 5da:	bb 0b       	sbc	r27, r27
+ 5dc:	80 93 1d 01 	sts	0x011D, r24	; 0x80011d <usart_buf+0x5>
+ 5e0:	90 93 1e 01 	sts	0x011E, r25	; 0x80011e <usart_buf+0x6>
+ 5e4:	a0 93 1f 01 	sts	0x011F, r26	; 0x80011f <usart_buf+0x7>
+ 5e8:	b0 93 20 01 	sts	0x0120, r27	; 0x800120 <usart_buf+0x8>
+				*((unsigned short int*)(usart_buf+9)) = read_adc(Uin);
+ 5ec:	83 e0       	ldi	r24, 0x03	; 3
+ 5ee:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 5f2:	90 93 22 01 	sts	0x0122, r25	; 0x800122 <usart_buf+0xa>
+ 5f6:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <usart_buf+0x9>
+				*((unsigned short int*)(usart_buf+11)) = read_adc(Uout);
+ 5fa:	81 e0       	ldi	r24, 0x01	; 1
+ 5fc:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 600:	90 93 24 01 	sts	0x0124, r25	; 0x800124 <usart_buf+0xc>
+ 604:	80 93 23 01 	sts	0x0123, r24	; 0x800123 <usart_buf+0xb>
+				*((unsigned short int*)(usart_buf+13)) = read_adc(Ubat);
+ 608:	82 e0       	ldi	r24, 0x02	; 2
+ 60a:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 60e:	90 93 26 01 	sts	0x0126, r25	; 0x800126 <usart_buf+0xe>
+ 612:	80 93 25 01 	sts	0x0125, r24	; 0x800125 <usart_buf+0xd>
+ 616:	06 c0       	rjmp	.+12     	; 0x624 <_Z8razb_pacv+0x1c4>
+					
+				break;
+		default: 	//неизвестная функция						
+			usart_buf[1] |= 0x80; // 1 в старшем байте кода команды(признак ошибки)
+ 618:	80 68       	ori	r24, 0x80	; 128
+ 61a:	80 93 19 01 	sts	0x0119, r24	; 0x800119 <usart_buf+0x1>
+			usart_buf[2] = 0x06;     // длина пакета (2 байт)
+ 61e:	86 e0       	ldi	r24, 0x06	; 6
+ 620:	80 93 1a 01 	sts	0x011A, r24	; 0x80011a <usart_buf+0x2>
+/**
+* обработка входных данных
+*/
+uint8_t razb_pac (void)
+{
+	uint8_t pr= 0;	// признак изменения конфигурации
+ 624:	d0 e0       	ldi	r29, 0x00	; 0
+		default: 	//неизвестная функция						
+			usart_buf[1] |= 0x80; // 1 в старшем байте кода команды(признак ошибки)
+			usart_buf[2] = 0x06;     // длина пакета (2 байт)
+		}
+		//присвоить len значение длины буфера без crc			
+		len  = usart_buf[2]-2;
+ 626:	e0 91 1a 01 	lds	r30, 0x011A	; 0x80011a <usart_buf+0x2>
+ 62a:	ce ef       	ldi	r28, 0xFE	; 254
+ 62c:	ce 0f       	add	r28, r30
+		// поместить по аресу  crc (uint16_t 2 последних байта)
+		*( (uint16_t*)(usart_buf+len) ) = crc16 ((char*)usart_buf, len);	
+ 62e:	6c 2f       	mov	r22, r28
+ 630:	88 e1       	ldi	r24, 0x18	; 24
+ 632:	91 e0       	ldi	r25, 0x01	; 1
+ 634:	0e 94 fb 01 	call	0x3f6	; 0x3f6 <_Z5crc16Pch>
+ 638:	ec 2f       	mov	r30, r28
+ 63a:	f0 e0       	ldi	r31, 0x00	; 0
+ 63c:	e8 5e       	subi	r30, 0xE8	; 232
+ 63e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 640:	91 83       	std	Z+1, r25	; 0x01
+ 642:	80 83       	st	Z, r24
+		//отправить сформированный пакет данных
+		//transmit(usart_buf, usart_buf[2]);
+		transmit((unsigned char*)usart_buf, usart_buf[2]);							
+ 644:	60 91 1a 01 	lds	r22, 0x011A	; 0x80011a <usart_buf+0x2>
+ 648:	88 e1       	ldi	r24, 0x18	; 24
+ 64a:	91 e0       	ldi	r25, 0x01	; 1
+ 64c:	0e 94 db 01 	call	0x3b6	; 0x3b6 <_Z8transmitPhh>
+		// возвращаем признак изменения конфигурации
+		return pr;
+} 
+ 650:	8d 2f       	mov	r24, r29
+ 652:	df 91       	pop	r29
+ 654:	cf 91       	pop	r28
+ 656:	08 95       	ret
+
+00000658 <_Z15parsing_packagev>:
+
+/**
+* Проверка входных даннных и формирвание пакета
+*/ 
+void parsing_package(void)			//анализ посылки
+{	
+ 658:	cf 93       	push	r28
+	uint8_t len=0;	// длина пакета	
+		
+	// 1. Проверка кол-ва принятых байт (2 байт пакета)
+	// --------------------------------------------
+	// если кол-во принятых байт меньше размера указанного в пакете (байт 2)	
+	if(received_bytes < usart_buf[2])
+ 65a:	c0 91 1a 01 	lds	r28, 0x011A	; 0x80011a <usart_buf+0x2>
+ 65e:	80 91 17 01 	lds	r24, 0x0117	; 0x800117 <received_bytes>
+ 662:	8c 17       	cp	r24, r28
+ 664:	a0 f1       	brcs	.+104    	; 0x6ce <_Z15parsing_packagev+0x76>
+		return;
+	}
+	// Запоминаем размер пакета
+	len = usart_buf[2];			
+	// Запрещаем прерывание по приёму
+	UCSR0B &= ~RXE;					
+ 666:	80 91 c1 00 	lds	r24, 0x00C1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+ 66a:	8f 76       	andi	r24, 0x6F	; 111
+ 66c:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+	// 2. Проверка сетевого адреса
+	// --------------------------
+	// Адрес считываем из 0 байта. 
+	//  Если адрес совпадает или 0 (широковещательный)
+	if( (cfg.adr == usart_buf[0]) || (0 == usart_buf[0]) )		
+ 670:	80 91 18 01 	lds	r24, 0x0118	; 0x800118 <usart_buf>
+ 674:	90 91 2e 01 	lds	r25, 0x012E	; 0x80012e <cfg+0x2>
+ 678:	98 17       	cp	r25, r24
+ 67a:	11 f0       	breq	.+4      	; 0x680 <_Z15parsing_packagev+0x28>
+ 67c:	81 11       	cpse	r24, r1
+ 67e:	16 c0       	rjmp	.+44     	; 0x6ac <_Z15parsing_packagev+0x54>
+	{
+		// 3. проверка crc кода
+		// ---------------------
+		uint16_t crc2 = crc16((char*)usart_buf, len-2);			// рассчитать CRC код
+ 680:	6e ef       	ldi	r22, 0xFE	; 254
+ 682:	6c 0f       	add	r22, r28
+ 684:	88 e1       	ldi	r24, 0x18	; 24
+ 686:	91 e0       	ldi	r25, 0x01	; 1
+ 688:	0e 94 fb 01 	call	0x3f6	; 0x3f6 <_Z5crc16Pch>
+		uint16_t crc3 = *((uint16_t*)(usart_buf+len-2));		// получить CRC код из пакета
+ 68c:	ec 2f       	mov	r30, r28
+ 68e:	f0 e0       	ldi	r31, 0x00	; 0
+ 690:	ea 5e       	subi	r30, 0xEA	; 234
+ 692:	fe 4f       	sbci	r31, 0xFE	; 254
+		// если расчитанное CRC совпадает с пришедшим
+		if( crc2 == crc3 )										
+ 694:	20 81       	ld	r18, Z
+ 696:	31 81       	ldd	r19, Z+1	; 0x01
+ 698:	82 17       	cp	r24, r18
+ 69a:	93 07       	cpc	r25, r19
+ 69c:	39 f4       	brne	.+14     	; 0x6ac <_Z15parsing_packagev+0x54>
+		{
+			// 4. Проверяем тип устройства
+			//если тип устройства совпадает
+			if(usart_buf[3]== TYPE_DEF)				
+ 69e:	80 91 1b 01 	lds	r24, 0x011B	; 0x80011b <usart_buf+0x3>
+ 6a2:	85 30       	cpi	r24, 0x05	; 5
+ 6a4:	19 f4       	brne	.+6      	; 0x6ac <_Z15parsing_packagev+0x54>
+			{
+				//transmit((char*)usart_buf, usart_buf[2]);
+				// обрабатываем пакет
+				x = razb_pac();								
+ 6a6:	0e 94 30 02 	call	0x460	; 0x460 <_Z8razb_pacv>
+ 6aa:	01 c0       	rjmp	.+2      	; 0x6ae <_Z15parsing_packagev+0x56>
+/**
+* Проверка входных даннных и формирвание пакета
+*/ 
+void parsing_package(void)			//анализ посылки
+{	
+	uint8_t x = 0;	// признак изменения конфигурации
+ 6ac:	80 e0       	ldi	r24, 0x00	; 0
+			}
+		}
+	}
+
+	//Переход на приём, сброс всех флагов
+	received_bytes = 0;	//Сбросить количество принятых байт
+ 6ae:	10 92 17 01 	sts	0x0117, r1	; 0x800117 <received_bytes>
+	UCSR0B |= RXE;		//Разрешаем прерывание по приёму
+ 6b2:	90 91 c1 00 	lds	r25, 0x00C1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+ 6b6:	90 69       	ori	r25, 0x90	; 144
+ 6b8:	90 93 c1 00 	sts	0x00C1, r25	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+	// Если конфигурация изменилась
+	if (x)
+ 6bc:	88 23       	and	r24, r24
+ 6be:	39 f0       	breq	.+14     	; 0x6ce <_Z15parsing_packagev+0x76>
+	{
+		// Применить изменения
+		USART_Init(cfg.brate);	
+ 6c0:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <cfg>
+ 6c4:	90 91 2d 01 	lds	r25, 0x012D	; 0x80012d <cfg+0x1>
+	}
+}
+ 6c8:	cf 91       	pop	r28
+	UCSR0B |= RXE;		//Разрешаем прерывание по приёму
+	// Если конфигурация изменилась
+	if (x)
+	{
+		// Применить изменения
+		USART_Init(cfg.brate);	
+ 6ca:	0c 94 64 01 	jmp	0x2c8	; 0x2c8 <_Z10USART_Initj>
+	}
+}
+ 6ce:	cf 91       	pop	r28
+ 6d0:	08 95       	ret
+
+000006d2 <_Z10regim_testv>:
+*/
+ void regim_test(void)							//
+ {
+ 	 uint16_t U2 = 0;							// конечное напряжение
+
+	 if((flagi&(1<<4))==0)							//если нет аварии, то провести тест
+ 6d2:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 6d6:	84 fd       	sbrc	r24, 4
+ 6d8:	4d c0       	rjmp	.+154    	; 0x774 <_Z10regim_testv+0xa2>
+	 {
+
+		 if(count_period_test>Ust_period_test)		//если наступило время теста
+ 6da:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <count_period_test>
+ 6de:	90 91 0e 01 	lds	r25, 0x010E	; 0x80010e <count_period_test+0x1>
+ 6e2:	a0 91 0f 01 	lds	r26, 0x010F	; 0x80010f <count_period_test+0x2>
+ 6e6:	b0 91 10 01 	lds	r27, 0x0110	; 0x800110 <count_period_test+0x3>
+ 6ea:	81 30       	cpi	r24, 0x01	; 1
+ 6ec:	97 49       	sbci	r25, 0x97	; 151
+ 6ee:	a9 44       	sbci	r26, 0x49	; 73
+ 6f0:	b1 40       	sbci	r27, 0x01	; 1
+ 6f2:	08 f4       	brcc	.+2      	; 0x6f6 <_Z10regim_testv+0x24>
+ 6f4:	3f c0       	rjmp	.+126    	; 0x774 <_Z10regim_testv+0xa2>
+		 {					 
+			 if(!Flag_test)							//если тест не начат
+ 6f6:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <Flag_test>
+ 6fa:	81 11       	cpse	r24, r1
+ 6fc:	13 c0       	rjmp	.+38     	; 0x724 <_Z10regim_testv+0x52>
+			 {
+				 count_time_test = 0;				//обнулить счетчик длительности теста
+ 6fe:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <count_time_test+0x1>
+ 702:	10 92 0b 01 	sts	0x010B, r1	; 0x80010b <count_time_test>
+				 Flag_test = 1;						//установить флаг начала теста
+ 706:	81 e0       	ldi	r24, 0x01	; 1
+ 708:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <Flag_test>
+				 U1=read_adc(Ubat);					//записать начальное напряжение аккумулятора
+ 70c:	82 e0       	ldi	r24, 0x02	; 2
+ 70e:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 712:	90 93 08 01 	sts	0x0108, r25	; 0x800108 <U1+0x1>
+ 716:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <U1>
+				 // запускать можно только если не заряжается, а не прерывать заряд
+				 ZAR_OFF();							//установить соответствующие ключи
+ 71a:	5c 98       	cbi	0x0b, 4	; 11
+				 RAZR_ON();							// включаем разрядку
+ 71c:	5e 9a       	sbi	0x0b, 6	; 11
+				 OUT_BAT_OFF();						//выключить питание от батареи
+ 71e:	5d 98       	cbi	0x0b, 5	; 11
+				 LED_RAZR_ON();						//индикация идет ТЕСТ
+ 720:	2d 9a       	sbi	0x05, 5	; 5
+ 722:	08 95       	ret
+				  //transmit((uint8_t*)x,strlen(x));
+				 #endif
+			 }
+			 else //если тест запущен
+			 {
+				 if(count_time_test>Ust_time_test)	//проверить прошедшее время
+ 724:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <count_time_test>
+ 728:	90 91 0c 01 	lds	r25, 0x010C	; 0x80010c <count_time_test+0x1>
+ 72c:	81 33       	cpi	r24, 0x31	; 49
+ 72e:	95 47       	sbci	r25, 0x75	; 117
+ 730:	08 f1       	brcs	.+66     	; 0x774 <_Z10regim_testv+0xa2>
+					 transmit((uint8_t*)x,strlen(x));
+					 x="\r\n";
+					 transmit((uint8_t*)x,strlen(x));
+					 #endif
+					 
+					 U2=read_adc(Ubat);				//если время теста вышло считать значение напряжения АКБ
+ 732:	82 e0       	ldi	r24, 0x02	; 2
+ 734:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+					 count_period_test = 0;			//обнулить счетчик периода проведения теста
+ 738:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <count_period_test>
+ 73c:	10 92 0e 01 	sts	0x010E, r1	; 0x80010e <count_period_test+0x1>
+ 740:	10 92 0f 01 	sts	0x010F, r1	; 0x80010f <count_period_test+0x2>
+ 744:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <count_period_test+0x3>
+					 Flag_test = 0;					//обнулить флаг теста
+ 748:	10 92 15 01 	sts	0x0115, r1	; 0x800115 <Flag_test>
+					 RAZR_OFF();					//отключить разряд
+ 74c:	5e 98       	cbi	0x0b, 6	; 11
+					 OUT_BAT_OFF();					//установить ключи на заряд и работу от сети
+ 74e:	5d 98       	cbi	0x0b, 5	; 11
+					 ZAR_ON();
+ 750:	5c 9a       	sbi	0x0b, 4	; 11
+					 LED_RAZR_OFF();				//отключить индикацию теста
+ 752:	2d 98       	cbi	0x05, 5	; 5
+					 
+					 if((U1-U2)> Pad_napr_test)		//если падение напряжения на аккумуляторе при тесте больше установленного,
+ 754:	20 91 07 01 	lds	r18, 0x0107	; 0x800107 <U1>
+ 758:	30 91 08 01 	lds	r19, 0x0108	; 0x800108 <U1+0x1>
+ 75c:	28 1b       	sub	r18, r24
+ 75e:	39 0b       	sbc	r19, r25
+ 760:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 764:	25 36       	cpi	r18, 0x65	; 101
+ 766:	31 05       	cpc	r19, r1
+ 768:	10 f0       	brcs	.+4      	; 0x76e <_Z10regim_testv+0x9c>
+					 {//то акб плохой
+						 //status_akkum = 0;			//УСТАНОВИТЬ ФЛАГ СТАТУСА АККУМУЛЯТОРА
+						 ClrBit(flagi,6);			// установить статус "плохой"(сбросить бит 6)
+ 76a:	8f 7b       	andi	r24, 0xBF	; 191
+ 76c:	01 c0       	rjmp	.+2      	; 0x770 <_Z10regim_testv+0x9e>
+						 
+					 }
+					 else
+					 {
+						 //status_akkum = 1;			//
+						 SetBit(flagi,6);			//иначе установить бит 6
+ 76e:	80 64       	ori	r24, 0x40	; 64
+ 770:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+ 774:	08 95       	ret
+
+00000776 <_Z9time_workv>:
+ //для исключения деления на ноль при U1=U2, Tp = 0xFFFFFFFF;
+ void time_work(void)
+ {	 
+	int U2 = 0;			//конечное напряжение
+	 
+	 if(U1!=U2)
+ 776:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <U1>
+ 77a:	90 91 08 01 	lds	r25, 0x0108	; 0x800108 <U1+0x1>
+ 77e:	89 2b       	or	r24, r25
+ 780:	d1 f0       	breq	.+52     	; 0x7b6 <_Z9time_workv+0x40>
+	 {		 
+	 U2 = read_adc(Ubat);
+ 782:	82 e0       	ldi	r24, 0x02	; 2
+ 784:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 788:	9c 01       	movw	r18, r24
+	 Tp = ((T)*(Umin-U1))/(U2-U1);		//расчет остаточного времени работы до напряжения отключения Umin (.мин)
+ 78a:	40 91 07 01 	lds	r20, 0x0107	; 0x800107 <U1>
+ 78e:	50 91 08 01 	lds	r21, 0x0108	; 0x800108 <U1+0x1>
+ 792:	86 e5       	ldi	r24, 0x56	; 86
+ 794:	91 e0       	ldi	r25, 0x01	; 1
+ 796:	84 1b       	sub	r24, r20
+ 798:	95 0b       	sbc	r25, r21
+ 79a:	b9 01       	movw	r22, r18
+ 79c:	64 1b       	sub	r22, r20
+ 79e:	75 0b       	sbc	r23, r21
+ 7a0:	0e 94 0e 04 	call	0x81c	; 0x81c <__divmodhi4>
+ 7a4:	70 93 12 01 	sts	0x0112, r23	; 0x800112 <Tp+0x1>
+ 7a8:	60 93 11 01 	sts	0x0111, r22	; 0x800111 <Tp>
+	 x="____\r\n";
+	 transmit((uint8_t*)x,strlen(x));
+	 #endif
+	 
+	 
+	 U1 = U2;
+ 7ac:	30 93 08 01 	sts	0x0108, r19	; 0x800108 <U1+0x1>
+ 7b0:	20 93 07 01 	sts	0x0107, r18	; 0x800107 <U1>
+ 7b4:	08 95       	ret
+	 }
+	 else
+	 {
+		 Tp = 0xFFFFFFFF;
+ 7b6:	8f ef       	ldi	r24, 0xFF	; 255
+ 7b8:	9f ef       	ldi	r25, 0xFF	; 255
+ 7ba:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <Tp+0x1>
+ 7be:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <Tp>
+ 7c2:	08 95       	ret
+
+000007c4 <_Z5zarydv>:
+ 
+void zaryd (void)
+{
+		
+		
+		if(flagi&(1<<2))						
+ 7c4:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 7c8:	82 ff       	sbrs	r24, 2
+ 7ca:	12 c0       	rjmp	.+36     	; 0x7f0 <_Z5zarydv+0x2c>
+		{
+				
+					if(read_adc(Ubat)>cfg.Uz)		//если напряжение достигло уровня заряженного аккумулятора					
+ 7cc:	82 e0       	ldi	r24, 0x02	; 2
+ 7ce:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 7d2:	20 91 2f 01 	lds	r18, 0x012F	; 0x80012f <cfg+0x3>
+ 7d6:	30 91 30 01 	lds	r19, 0x0130	; 0x800130 <cfg+0x4>
+ 7da:	28 17       	cp	r18, r24
+ 7dc:	39 07       	cpc	r19, r25
+ 7de:	e8 f4       	brcc	.+58     	; 0x81a <_Z5zarydv+0x56>
+									transmit((uint8_t*)x,strlen(x));
+									#endif	
+									}
+										
+							*/
+							ZAR_OFF();						//отключить заряд
+ 7e0:	5c 98       	cbi	0x0b, 4	; 11
+							LED_ZAR_OFF();					//выключить инндикацию заряда		
+ 7e2:	2c 98       	cbi	0x05, 4	; 5
+							//flag_z = 0;						//обнулить флаг заряда
+							ClrBit(flagi,2);
+ 7e4:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 7e8:	8b 7f       	andi	r24, 0xFB	; 251
+ 7ea:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+ 7ee:	08 95       	ret
+
+		}
+		else
+		{	
+																
+						if(read_adc(Ubat)<cfg.Um)		//если напряжение аккумулятора ниже установки, то зарядить аккумулятор
+ 7f0:	82 e0       	ldi	r24, 0x02	; 2
+ 7f2:	0e 94 16 02 	call	0x42c	; 0x42c <_Z8read_adch>
+ 7f6:	20 91 31 01 	lds	r18, 0x0131	; 0x800131 <cfg+0x5>
+ 7fa:	30 91 32 01 	lds	r19, 0x0132	; 0x800132 <cfg+0x6>
+ 7fe:	82 17       	cp	r24, r18
+ 800:	93 07       	cpc	r25, r19
+ 802:	40 f4       	brcc	.+16     	; 0x814 <_Z5zarydv+0x50>
+						
+						{
+							SetBit(flagi,2);				//установить флаг заряда
+ 804:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <flagi>
+ 808:	84 60       	ori	r24, 0x04	; 4
+ 80a:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <flagi>
+							ZAR_ON();						//зарядить аккумулятор
+ 80e:	5c 9a       	sbi	0x0b, 4	; 11
+							LED_ZAR_ON();					//включить индикацию заряда
+ 810:	2c 9a       	sbi	0x05, 4	; 5
+ 812:	08 95       	ret
+							//flag_z = 1;				//установить флаг заряда
+							
+						}
+						else
+						{													
+							regim_test();					//функция теста.
+ 814:	0e 94 69 03 	call	0x6d2	; 0x6d2 <_Z10regim_testv>
+							ZAR_OFF();										
+ 818:	5c 98       	cbi	0x0b, 4	; 11
+ 81a:	08 95       	ret
+
+0000081c <__divmodhi4>:
+ 81c:	97 fb       	bst	r25, 7
+ 81e:	07 2e       	mov	r0, r23
+ 820:	16 f4       	brtc	.+4      	; 0x826 <__divmodhi4+0xa>
+ 822:	00 94       	com	r0
+ 824:	07 d0       	rcall	.+14     	; 0x834 <__divmodhi4_neg1>
+ 826:	77 fd       	sbrc	r23, 7
+ 828:	09 d0       	rcall	.+18     	; 0x83c <__divmodhi4_neg2>
+ 82a:	0e 94 22 04 	call	0x844	; 0x844 <__udivmodhi4>
+ 82e:	07 fc       	sbrc	r0, 7
+ 830:	05 d0       	rcall	.+10     	; 0x83c <__divmodhi4_neg2>
+ 832:	3e f4       	brtc	.+14     	; 0x842 <__divmodhi4_exit>
+
+00000834 <__divmodhi4_neg1>:
+ 834:	90 95       	com	r25
+ 836:	81 95       	neg	r24
+ 838:	9f 4f       	sbci	r25, 0xFF	; 255
+ 83a:	08 95       	ret
+
+0000083c <__divmodhi4_neg2>:
+ 83c:	70 95       	com	r23
+ 83e:	61 95       	neg	r22
+ 840:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000842 <__divmodhi4_exit>:
+ 842:	08 95       	ret
+
+00000844 <__udivmodhi4>:
+ 844:	aa 1b       	sub	r26, r26
+ 846:	bb 1b       	sub	r27, r27
+ 848:	51 e1       	ldi	r21, 0x11	; 17
+ 84a:	07 c0       	rjmp	.+14     	; 0x85a <__udivmodhi4_ep>
+
+0000084c <__udivmodhi4_loop>:
+ 84c:	aa 1f       	adc	r26, r26
+ 84e:	bb 1f       	adc	r27, r27
+ 850:	a6 17       	cp	r26, r22
+ 852:	b7 07       	cpc	r27, r23
+ 854:	10 f0       	brcs	.+4      	; 0x85a <__udivmodhi4_ep>
+ 856:	a6 1b       	sub	r26, r22
+ 858:	b7 0b       	sbc	r27, r23
+
+0000085a <__udivmodhi4_ep>:
+ 85a:	88 1f       	adc	r24, r24
+ 85c:	99 1f       	adc	r25, r25
+ 85e:	5a 95       	dec	r21
+ 860:	a9 f7       	brne	.-22     	; 0x84c <__udivmodhi4_loop>
+ 862:	80 95       	com	r24
+ 864:	90 95       	com	r25
+ 866:	bc 01       	movw	r22, r24
+ 868:	cd 01       	movw	r24, r26
+ 86a:	08 95       	ret
+
+0000086c <eeprom_read_block>:
+ 86c:	dc 01       	movw	r26, r24
+ 86e:	cb 01       	movw	r24, r22
+
+00000870 <eeprom_read_blraw>:
+ 870:	fc 01       	movw	r30, r24
+ 872:	f9 99       	sbic	0x1f, 1	; 31
+ 874:	fe cf       	rjmp	.-4      	; 0x872 <eeprom_read_blraw+0x2>
+ 876:	06 c0       	rjmp	.+12     	; 0x884 <eeprom_read_blraw+0x14>
+ 878:	f2 bd       	out	0x22, r31	; 34
+ 87a:	e1 bd       	out	0x21, r30	; 33
+ 87c:	f8 9a       	sbi	0x1f, 0	; 31
+ 87e:	31 96       	adiw	r30, 0x01	; 1
+ 880:	00 b4       	in	r0, 0x20	; 32
+ 882:	0d 92       	st	X+, r0
+ 884:	41 50       	subi	r20, 0x01	; 1
+ 886:	50 40       	sbci	r21, 0x00	; 0
+ 888:	b8 f7       	brcc	.-18     	; 0x878 <eeprom_read_blraw+0x8>
+ 88a:	08 95       	ret
+
+0000088c <eeprom_write_block>:
+ 88c:	dc 01       	movw	r26, r24
+ 88e:	cb 01       	movw	r24, r22
+ 890:	03 c0       	rjmp	.+6      	; 0x898 <eeprom_write_block+0xc>
+ 892:	2d 91       	ld	r18, X+
+ 894:	0e 94 51 04 	call	0x8a2	; 0x8a2 <eeprom_write_r18>
+ 898:	41 50       	subi	r20, 0x01	; 1
+ 89a:	50 40       	sbci	r21, 0x00	; 0
+ 89c:	d0 f7       	brcc	.-12     	; 0x892 <eeprom_write_block+0x6>
+ 89e:	08 95       	ret
+
+000008a0 <eeprom_write_byte>:
+ 8a0:	26 2f       	mov	r18, r22
+
+000008a2 <eeprom_write_r18>:
+ 8a2:	f9 99       	sbic	0x1f, 1	; 31
+ 8a4:	fe cf       	rjmp	.-4      	; 0x8a2 <eeprom_write_r18>
+ 8a6:	1f ba       	out	0x1f, r1	; 31
+ 8a8:	92 bd       	out	0x22, r25	; 34
+ 8aa:	81 bd       	out	0x21, r24	; 33
+ 8ac:	20 bd       	out	0x20, r18	; 32
+ 8ae:	0f b6       	in	r0, 0x3f	; 63
+ 8b0:	f8 94       	cli
+ 8b2:	fa 9a       	sbi	0x1f, 2	; 31
+ 8b4:	f9 9a       	sbi	0x1f, 1	; 31
+ 8b6:	0f be       	out	0x3f, r0	; 63
+ 8b8:	01 96       	adiw	r24, 0x01	; 1
+ 8ba:	08 95       	ret
+
+000008bc <_exit>:
+ 8bc:	f8 94       	cli
+
+000008be <__stop_program>:
+ 8be:	ff cf       	rjmp	.-2      	; 0x8be <__stop_program>
